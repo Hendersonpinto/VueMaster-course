@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Mastery course</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class="nav-bar"></div>
+    <div id="app">
+      <div class="product">
+        <a v-bind:href="URL">
+          <div class="product__image">
+            <img v-bind:src="image" />
+          </div>
+        </a>
+        <div class="product__info">
+          <h1>{{'New ' + product}}</h1>
+          <h2>{{description}}</h2>
+          <ul>
+            <li v-for="detail in details">
+              {{detail}}
+            </li>
+          </ul>
+
+          <h3>Variants:</h3>
+          <div v-for="variant in variants" key="variant.id">
+            <p @mouseover="updateImage(variant.color)" :style="{color: variant.color}">{{variant.color}}</p>
+          </div>
+
+          <h3>Sizes:</h3>
+          <div v-for="size in sizes" key="size.id">
+            <p>{{size.size}}</p>
+          </div>
+          <p v-if="inventory > 10">In stock</p>
+          <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
+          <p v-else>Sold out</p>
+
+          <button v-on:click="addToCart">Add to Cart</button>
+          <p>Cart ({{cart}})</p>
+        </div>
+      </p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
